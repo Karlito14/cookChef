@@ -1,0 +1,17 @@
+@use './variables';
+@use './mixins';
+
+.btn {
+  @include mixins.button;
+}
+
+.btn-primary {
+  background-color: variables.$primary;
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-reverse-primary {
+  border: 2px solid variables.$primary;
+  color: variables.$primary;
+}

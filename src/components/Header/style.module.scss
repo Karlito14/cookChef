@@ -1,2 +1,39 @@
+@use '../../assets/styles/variables';
+
 .header {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: variables.$box-shadow-nav;
+
+  &__icon {
+    margin-right: 20px;
+    cursor: pointer;
+    color: variables.$primary;
+  }
+
+  &__containerImg {
+    flex: auto;
+    &__img {
+      width: 150px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+
+    &__item {
+      margin-right: 10px;
+
+      button {
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 }
