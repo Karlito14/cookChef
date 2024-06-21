@@ -1,4 +1,5 @@
 @use '../../assets/styles/variables';
+@use '../../assets/styles/mixins';
 
 .header {
   padding: 10px 20px;
@@ -7,12 +8,6 @@
   box-shadow: variables.$box-shadow-nav;
   background-color: white;
 
-  &__icon {
-    margin-right: 20px;
-    cursor: pointer;
-    color: variables.$primary;
-  }
-
   &__containerImg {
     flex: auto;
     &__img {
@@ -20,9 +15,24 @@
     }
   }
 
+  &__icon {
+    display: none;
+    cursor: pointer;
+    color: variables.$primary;
+    font-size: 25px;
+
+    @include mixins.sm {
+      display: block;
+    }
+  }
+
   &__list {
     display: flex;
     align-items: center;
+
+    @include mixins.sm {
+      display: none;
+    }
 
     &__item {
       margin-right: 10px;

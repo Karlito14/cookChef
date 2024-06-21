@@ -1,4 +1,5 @@
 @use '../../assets/styles/variables';
+@use '../../assets/styles/mixins';
 
 .container {
   flex: auto;
@@ -21,6 +22,14 @@
       grid-template-columns: repeat(3, 1fr);
       place-content: center;
       gap: 20px;
+
+      @include mixins.md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include mixins.sm {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 }
