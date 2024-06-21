@@ -1,13 +1,12 @@
 import style from './style.module.scss';
-import recette from '../../assets/images/recette.jpg';
 
-export const Recipe = () => {
+export const Recipe = ({ title, image }) => {
   return (
     <li>
       <figure className={style.recipe}>
-        <img className={style.recipe__img} src={recette} alt='recette' />
+        <img className={style.recipe__img} src={image} alt="recette" />
         <figcaption className={style.recipe__title}>
-          <h3>Boulette de viande aux champignons</h3>
+          <h3>{title}</h3>
         </figcaption>
       </figure>
     </li>
