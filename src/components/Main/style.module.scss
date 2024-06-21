@@ -8,8 +8,31 @@
   padding: 20px;
   width: 100%;
 
+  &__divInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+
+    &__icon {
+      margin-right: 10px;
+      position: absolute;
+      left: 15px;
+    }
+
+    &__input {
+      flex: auto;
+      outline: none;
+      border: none;
+      padding: 10px 15px 10px 40px;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+  }
+
   &__title {
-    margin: 30px 0;
+    margin: 10px 0 20px;
   }
 
   &__main {

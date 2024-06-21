@@ -23,7 +23,11 @@ a {
 }
 
 .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+input, ::placeholder {
+  font-family: variables.$font-family;
 }
