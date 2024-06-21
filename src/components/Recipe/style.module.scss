@@ -26,11 +26,18 @@
 
   &__title {
     border-radius: 0 0 20px 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px;
 
     h3 {
       transition: all 0.3s;
+    }
+
+    &__icon {
+      font-size: 25px;
+      transition: color 0.3s;
     }
   }
 }

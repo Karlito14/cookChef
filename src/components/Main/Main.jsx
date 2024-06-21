@@ -8,12 +8,8 @@ export const Main = () => {
       <h1 className={style.container__title}>Découvrez nos recettes</h1>
       <main className={style.container__main}>
         <ul className={style.container__main__list}>
-          {data.map((recipe) => (
-            <Recipe
-              key={recipe.title}
-              title={recipe.title}
-              image={recipe.image}
-            />
+          {data.map((recipe, index) => (
+            <Recipe key={index} title={recipe.title} image={recipe.image} />
           ))}
         </ul>
       </main>
