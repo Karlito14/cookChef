@@ -1,11 +1,12 @@
 @mixin button {
     cursor: pointer;
     background-color: white;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 20px;
     outline: none;
     padding: 6px 15px;
     transition: all 0.3s;
+    width: 105px;
 
     &:hover {
         opacity: 0.8;
