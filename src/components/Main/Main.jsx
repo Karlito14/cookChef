@@ -5,28 +5,17 @@ import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import apiRecipes from '../../api/api-recipes';
 import { Spinning } from '../Spinning/Spinning';
+import { useUpdateIndex } from '../../hooks/useUpdateIndex';
 
 export const Main = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [index, setIndex] = useState(6);
-
-  window.addEventListener('scroll', () => {
-    const pageHeight = window.innerHeight;
-    const positionScroll = document.documentElement.scrollTop;
-    const pageHeightTotal = document.documentElement.offsetHeight;
-
-    if (
-      pageHeight + positionScroll >= pageHeightTotal && index < recipes.length
-    ) {
-      setIndex(index + 6);
-    }
-  });
+  const index = useUpdateIndex(recipes);
 
   useEffect(() => {
     async function getRecipes() {
       try {
-        const response = await apiRecipes.getRecipes(index);
+        const response = await apiRecipes.getRecipes();
         setRecipes(response);
       } catch (error) {
         console.error(error);
@@ -34,9 +23,9 @@ export const Main = () => {
         setLoading(false);
       }
     }
-    
+
     getRecipes();
-  }, [index]);
+  }, []);
 
   const handleInput = (event) => {
     const value = event.target.value.trim().toLowerCase();
