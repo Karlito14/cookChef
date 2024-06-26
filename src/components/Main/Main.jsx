@@ -10,7 +10,7 @@ export const Main = () => {
   const handleInput = (event) => {
     const value = event.target.value.trim().toLowerCase();
     const recipesUpdated = data.filter((recipe) =>
-      recipe.title.toLowerCase().startsWith(value)
+      recipe.title.toLowerCase().includes(value)
     );
     setRecipes(recipesUpdated);
   };

@@ -1,3 +1,7 @@
+/**
+ * @constant
+ * @type {{title: string, _id: string, image: string}[]}
+ */
 export const data = [
   {
     title: 'Omelette au fromage',
