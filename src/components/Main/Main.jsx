@@ -1,11 +1,28 @@
 import { Recipe } from '../Recipe/Recipe';
 import style from './style.module.scss';
 import { data } from '../../data/data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import ApiRecipes from '../../api/api-recipes';
+import { Spinning } from '../Spinning/Spinning';
 
 export const Main = () => {
-  const [recipes, setRecipes] = useState(data);
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getRecipes() {
+      try {
+        const response = await ApiRecipes.getRecipes();
+        setRecipes(response);
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false);
+      }
+    }
+    getRecipes();
+  }, []);
 
   const handleInput = (event) => {
     const value = event.target.value.trim().toLowerCase();
@@ -28,6 +45,7 @@ export const Main = () => {
         />
       </div>
       <main className={style.container__main}>
+        {loading && <Spinning />}
         <ul className={style.container__main__list}>
           {recipes.map((recipe) => (
             <Recipe
