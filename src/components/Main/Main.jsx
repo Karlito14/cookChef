@@ -3,7 +3,7 @@ import style from './style.module.scss';
 import { data } from '../../data/data';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import ApiRecipes from '../../api/api-recipes';
+import apiRecipes from '../../api/api-recipes';
 import { Spinning } from '../Spinning/Spinning';
 
 export const Main = () => {
@@ -13,7 +13,7 @@ export const Main = () => {
   useEffect(() => {
     async function getRecipes() {
       try {
-        const response = await ApiRecipes.getRecipes();
+        const response = await apiRecipes.getRecipes();
         setRecipes(response);
       } catch (error) {
         console.error(error)
@@ -50,8 +50,7 @@ export const Main = () => {
           {recipes.map((recipe) => (
             <Recipe
               key={recipe._id}
-              title={recipe.title}
-              image={recipe.image}
+              recipe={recipe}
             />
           ))}
         </ul>

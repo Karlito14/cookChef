@@ -7,6 +7,8 @@
   margin: 0 auto;
   padding: 20px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   &__divInput {
     display: flex;
@@ -38,7 +40,10 @@
   &__main {
     padding: 20px;
     background-color: white;
-    border-radius: 20px;    
+    border-radius: 20px;  
+    flex: auto;
+    display: flex;
+    flex-direction: column;
 
     &__list {
       display: grid;
