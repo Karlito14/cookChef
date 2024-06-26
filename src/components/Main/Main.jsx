@@ -9,20 +9,34 @@ import { Spinning } from '../Spinning/Spinning';
 export const Main = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [index, setIndex] = useState(6);
+
+  window.addEventListener('scroll', () => {
+    const pageHeight = window.innerHeight;
+    const positionScroll = document.documentElement.scrollTop;
+    const pageHeightTotal = document.documentElement.offsetHeight;
+
+    if (
+      pageHeight + positionScroll >= pageHeightTotal && index < recipes.length
+    ) {
+      setIndex(index + 6);
+    }
+  });
 
   useEffect(() => {
     async function getRecipes() {
       try {
-        const response = await apiRecipes.getRecipes();
+        const response = await apiRecipes.getRecipes(index);
         setRecipes(response);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       } finally {
         setLoading(false);
       }
     }
+    
     getRecipes();
-  }, []);
+  }, [index]);
 
   const handleInput = (event) => {
     const value = event.target.value.trim().toLowerCase();
@@ -47,11 +61,8 @@ export const Main = () => {
       <main className={style.container__main}>
         {loading && <Spinning />}
         <ul className={style.container__main__list}>
-          {recipes.map((recipe) => (
-            <Recipe
-              key={recipe._id}
-              recipe={recipe}
-            />
+          {recipes.slice(0, index).map((recipe) => (
+            <Recipe key={recipe._id} recipe={recipe} />
           ))}
         </ul>
       </main>
