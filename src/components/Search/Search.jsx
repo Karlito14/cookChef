@@ -1,11 +1,11 @@
 import { FaSearch } from 'react-icons/fa';
 import style from './style.module.scss';
-import { data } from '../../data/data';
+//import { data } from '../../data/data';
 
-export const Search = ({ setRecipes }) => {
+export const Search = ({ setRecipes, recipes }) => {
   const handleInput = (event) => {
     const value = event.target.value.trim().toLowerCase();
-    const recipesUpdated = data.filter((recipe) =>
+    const recipesUpdated = recipes.filter((recipe) =>
       recipe.title.toLowerCase().includes(value)
     );
     setRecipes(recipesUpdated);

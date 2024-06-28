@@ -28,6 +28,13 @@ class ApiRecipes {
     const recipes = await response.json();
     return Array.isArray(recipes) ? recipes : [recipes];
   }
+
+  async deleteRecipe(id) {
+    const response = await fetch(`${this.url}/${id}`, {
+      method: 'DELETE',
+    });
+    console.log(response);
+  }
 }
 
 export default new ApiRecipes('https://restapi.fr/api/recettes');
