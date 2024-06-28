@@ -4,13 +4,14 @@ class ApiRecipes {
   }
 
   async postRecipes(data) {
-    await fetch(this.url, {
+    const response = await fetch(this.url, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
     });
+    return response
   }
 
   async updateRecipe(data, id) {
@@ -24,7 +25,7 @@ class ApiRecipes {
   }
 
   async getRecipes() {
-    const response = await fetch(this.url);
+    const response = await fetch(`${this.url}?sort=createdAt:-1`);
     const recipes = await response.json();
     return Array.isArray(recipes) ? recipes : [recipes];
   }
