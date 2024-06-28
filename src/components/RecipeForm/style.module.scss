@@ -1,0 +1,57 @@
+@use '../../assets/styles/mixins';
+@use '../../assets/styles/variables';
+
+.container {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+
+  @include mixins.md {
+    width: 80%;
+  }
+
+  &__recipe {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+
+    label {
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    input {
+      padding: 10px 15px;
+      outline: none;
+      border-radius: 20px;
+      border: 2px solid variables.$grey-light;
+    }
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__action {
+    text-align: right;
+  }
+}
+
+.form_error {
+  margin-top: 5px;
+  color: variables.$red;
+  font-weight: 500;
+  font-size: 14px;
+}

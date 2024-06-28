@@ -3,6 +3,7 @@ import { FaBars } from 'react-icons/fa6';
 import logo from '../../assets/images/cookchef.png';
 import { FaHeart } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const [click, setClick] = useState(false);
@@ -24,13 +25,24 @@ export const Header = () => {
     <>
       <header className={style.header}>
         <div className={style.header__containerImg}>
-          <img
-            src={logo}
-            alt="cookchef"
-            className={style.header__containerImg__img}
-          />
+          <Link to={'/'}>
+            <img
+              src={logo}
+              alt="cookchef"
+              className={style.header__containerImg__img}
+            />
+          </Link>
         </div>
-        <ul className={`${style.header__list} ${click && windowWidth < 640 ? style.active : ''}`}>
+        <ul
+          className={`${style.header__list} ${
+            click && windowWidth < 640 ? style.active : ''
+          }`}
+        >
+          <li className={style.header__list__item}>
+            <Link to={'/form'} className="btn btn-primary">
+              + Ajouter une recette
+            </Link>
+          </li>
           <li className={style.header__list__item}>
             <button className="btn btn-reverse-primary">
               {<FaHeart />}WishList
