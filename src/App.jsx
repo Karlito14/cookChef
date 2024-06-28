@@ -8,7 +8,7 @@ import { Header } from './components/Header/Header';
 function App() {
   // try {
   //   useEffect(() => {
-  //     apiRecipes.postRecipes(data)
+  //     apiRecipes.postRecipes(data);
   //   }, []);
   // } catch (error) {
   //   console.error(error);
