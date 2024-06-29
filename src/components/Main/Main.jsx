@@ -1,9 +1,9 @@
-import { Recipe } from '../Recipe/Recipe';
 import style from './style.module.scss';
-import { useEffect, useState } from 'react';
 import apiRecipes from '../../api/api-recipes';
-import { Spinning } from '../Spinning/Spinning';
+import { useEffect, useState } from 'react';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
+import { Recipe } from '../Recipe/Recipe';
+import { Spinning } from '../Spinning/Spinning';
 import { Search } from '../Search/Search';
 
 export const Main = () => {
