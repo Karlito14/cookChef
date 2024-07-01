@@ -11,7 +11,7 @@ class ApiRecipes {
         'Content-Type': 'application/json',
       },
     });
-    return response
+    return response;
   }
 
   async updateRecipe(data, id) {
@@ -28,6 +28,12 @@ class ApiRecipes {
     const response = await fetch(`${this.url}?sort=createdAt:-1`);
     const recipes = await response.json();
     return Array.isArray(recipes) ? recipes : [recipes];
+  }
+
+  async getRecipe(id) {
+    const response = await fetch(`${this.url}/${id}`);
+    const recipe = await response.json();
+    return recipe;
   }
 
   async deleteRecipe(id) {

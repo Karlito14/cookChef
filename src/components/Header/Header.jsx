@@ -40,7 +40,7 @@ export const Header = () => {
         >
           <li className={style.header__list__item}>
             <Link to={'/addRecipe'} className="btn btn-primary">
-              + Ajouter une recette
+              Admin
             </Link>
           </li>
           <li className={style.header__list__item}>
