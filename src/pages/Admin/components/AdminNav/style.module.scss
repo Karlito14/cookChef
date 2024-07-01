@@ -1,0 +1,26 @@
+@use '../../../../assets/styles/variables';
+
+.container {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid variables.$grey-light;
+    width: 200px;
+    margin-right: 20px;
+
+    &__link {
+        display: inline-block;
+        padding: 5px;
+        width: 100%;
+        
+        &_active {
+            @extend .container__link;
+            color: white;
+            background-color: variables.$primary;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+    }
+
+    
+}
