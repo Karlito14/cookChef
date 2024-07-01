@@ -39,7 +39,7 @@ export const Header = () => {
           }`}
         >
           <li className={style.header__list__item}>
-            <Link to={'/addRecipe'} className="btn btn-primary">
+            <Link to={'/admin'} className="btn btn-primary">
               Admin
             </Link>
           </li>
