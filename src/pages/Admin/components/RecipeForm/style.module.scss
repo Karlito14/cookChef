@@ -1,5 +1,5 @@
-@use '../../assets/styles/mixins';
-@use '../../assets/styles/variables';
+@use '../../../../assets/styles/mixins';
+@use '../../../../assets/styles/variables';
 
 .container {
   flex: auto;
@@ -62,6 +62,6 @@
 }
 
 .success {
-    color: rgb(5, 105, 5);
-    margin-top: 5px;
+  color: rgb(5, 105, 5);
+  margin-top: 5px;
 }

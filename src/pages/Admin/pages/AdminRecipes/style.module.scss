@@ -2,9 +2,9 @@
   flex: auto;
   display: flex;
   flex-direction: column;
-  padding: 20px;
 
   &__title {
+    margin-top: 10px;
     margin-bottom: 20px;
   }
 
@@ -12,9 +12,5 @@
     flex: auto;
     display: flex;
     flex-direction: column;
-
-    div {
-      flex: auto;
-    }
   }
 }

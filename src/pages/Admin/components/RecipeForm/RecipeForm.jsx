@@ -2,7 +2,7 @@ import style from './style.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import apiRecipes from '../../api/api-recipes';
+import apiRecipes from '../../../../api/api-recipes';
 
 const schema = yup.object({
   title: yup
@@ -32,7 +32,6 @@ export const RecipeForm = () => {
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
-
 
   const onSubmit = async (values) => {
     clearErrors();
