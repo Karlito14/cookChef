@@ -22,5 +22,5 @@ export const useFetchRecipes = () => {
     getRecipes();
   }, []);
 
-  return [recipes, response, loading, setRecipes];
+  return [[recipes, setRecipes], response, loading];
 };

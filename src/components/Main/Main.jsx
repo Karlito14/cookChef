@@ -7,7 +7,7 @@ import { Spinning } from '../Spinning/Spinning';
 import { Search } from '../Search/Search';
 
 export const Main = () => {
-  const [recipes, response, loading, setRecipes] = useFetchRecipes();
+  const [[recipes, setRecipes], response, loading] = useFetchRecipes();
   const index = useUpdateIndex(recipes);
 
   const deleteRecipe = async (id) => {
