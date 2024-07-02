@@ -1,32 +1,14 @@
 import style from './style.module.scss';
 import apiRecipes from '../../api/api-recipes';
-import { useEffect, useState } from 'react';
 import { useUpdateIndex } from '../../hooks/useUpdateIndex';
+import { useFetchRecipes } from '../../hooks/useFetchRecipes';
 import { Recipe } from '../Recipe/Recipe';
 import { Spinning } from '../Spinning/Spinning';
 import { Search } from '../Search/Search';
 
 export const Main = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [response, setResponse] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [[recipes, setRecipes], response, loading] = useFetchRecipes();
   const index = useUpdateIndex(recipes);
-
-  useEffect(() => {
-    async function getRecipes() {
-      try {
-        const response = await apiRecipes.getRecipes();
-        setRecipes(response);
-        setResponse(response);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    getRecipes();
-  }, []);
 
   const deleteRecipe = async (id) => {
     const updateRecipes = recipes.filter((recipe) => recipe._id !== id);

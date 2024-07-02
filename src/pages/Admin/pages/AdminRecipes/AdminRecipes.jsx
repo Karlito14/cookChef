@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import style from './style.module.scss';
-import { AdminRecipesNav } from './components/AdminRecipeNav/AdminRecipeNav';
+import { AdminRecipesNav } from '../../components/AdminRecipeNav/AdminRecipeNav';
 
 export const AdminRecipes = () => {
   return (

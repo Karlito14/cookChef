@@ -1,0 +1,26 @@
+@use '../../../../../../assets/styles/variables';
+
+.list {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+
+  &__item {
+    padding: 5px 15px;
+    border-bottom: 1px solid variables.$grey-light;
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      flex: auto;
+    }
+
+    &__action {
+
+      button,
+      a {
+        margin-right: 5px;
+      }
+    }
+  }
+}
