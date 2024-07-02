@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import apiRecipes from '../../../../api/api-recipes';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
   title: yup
@@ -17,9 +18,12 @@ const schema = yup.object({
 });
 
 export const RecipeForm = () => {
+  const recipe = useLoaderData();
+  const navigate = useNavigate()
+
   const defaultValues = {
-    title: '',
-    image: '',
+    title: recipe?.title || '',
+    image: recipe?.image || '',
   };
 
   const {
@@ -43,9 +47,14 @@ export const RecipeForm = () => {
     };
 
     try {
-      const response = await apiRecipes.postRecipes(object);
-      if (response.ok) {
-        reset(defaultValues);
+      if (recipe) {
+        await apiRecipes.updateRecipe({ ...object }, recipe._id);
+        navigate('../list')
+      } else {
+        const response = await apiRecipes.postRecipes(object);
+        if (response.ok) {
+          reset(defaultValues);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -55,17 +64,29 @@ export const RecipeForm = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={style.form__title}>Ajouter une recette</h2>
+        <h2 className={style.form__title}>
+          {recipe ? 'Modifier' : 'Ajouter'} une recette
+        </h2>
         <div className={style.form__recipe}>
           <label htmlFor="title">Titre de la Recette</label>
-          <input type="text" id="title" name="title" {...register('title')} />
+          <input
+            type="text"
+            id="title"
+            name="title"
+            {...register('title')}
+          />
           {errors.title && (
             <p className={style.form_error}>{errors.title.message}</p>
           )}
         </div>
         <div className={style.form__recipe}>
           <label htmlFor="image">Image de la Recette</label>
-          <input type="text" id="image" name="image" {...register('image')} />
+          <input
+            type="text"
+            id="image"
+            name="image"
+            {...register('image')}
+          />
           {errors.image && (
             <p className={style.form_error}>{errors.image.message}</p>
           )}
