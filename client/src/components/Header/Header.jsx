@@ -49,7 +49,10 @@ export const Header = () => {
             </button>
           </li>
           <li className={style.header__list__item}>
-            <button className="btn btn-primary">Connexion</button>
+            <Link to={'/signup'} className="btn btn-primary">Inscription</Link>
+          </li>
+          <li className={style.header__list__item}>
+            <Link to={'/signin'} className="btn btn-primary">Connexion</Link>
           </li>
         </ul>
         <FaBars

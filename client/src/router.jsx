@@ -7,6 +7,8 @@ import { AdminUsers } from './pages/Admin/pages/AdminUsers/AdminUsers';
 import { AdminRecipesList } from './pages/Admin/pages/AdminRecipes/pages/AdminRecipesList/AdminRecipesList';
 import { AdminRecipesForm } from './pages/Admin/pages/AdminRecipes/pages/AdminRecipesForm/AdminRecipesForm';
 import apiRecipes from './api/api-recipes';
+import { Signup } from './pages/Signup/Signup';
+import { Signin } from './pages/Signin/Signin';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: 'signup',
+        element: <Signup />,
+      },
+      {
+        path: 'signin',
+        element: <Signin />,
       },
       {
         path: '/admin',
@@ -39,7 +49,7 @@ export const router = createBrowserRouter([
               },
               {
                 path: 'edit/:id',
-                loader: async ({ params: {id} }) => apiRecipes.getRecipe(id),
+                loader: async ({ params: { id } }) => apiRecipes.getRecipe(id),
                 element: <AdminRecipesForm />,
               },
             ],
