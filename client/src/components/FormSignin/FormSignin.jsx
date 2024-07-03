@@ -3,20 +3,16 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import apiUsers from '../../api/api-users';
-//import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
   email: yup
     .string()
     .email('Veuillez renseigner une adresse mail valide')
     .required('Veuillez renseigner votre email'),
-  password: yup
-    .string()
-    .required('Veuillez renseigner votre mot de passe')
+  password: yup.string().required('Veuillez renseigner votre mot de passe'),
 });
 
 export const FormSignin = () => {
-  //const navigate = useNavigate();
 
   const defaultValues = {
     email: '',
@@ -37,8 +33,8 @@ export const FormSignin = () => {
   const onSubmit = async (data) => {
     clearErrors();
     try {
-      await apiUsers.createUser(data);
-      //navigate('signin');
+      const user = await apiUsers.signin(data);
+      console.log(user)
     } catch (message) {
       setError('generic', { type: 'generic', message });
     }
@@ -47,7 +43,7 @@ export const FormSignin = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={style.form__title}>Inscription</h2>
+        <h2 className={style.form__title}>Connexion</h2>
         <div className={style.form__content}>
           <label htmlFor="email">Email</label>
           <input

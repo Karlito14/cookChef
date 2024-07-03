@@ -53,7 +53,7 @@ export const FormSignup = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={style.form__title}>Connexion</h2>
+        <h2 className={style.form__title}>Inscription</h2>
         <div className={style.form__content}>
           <label htmlFor="name">Nom</label>
           <input
