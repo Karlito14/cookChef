@@ -8,7 +8,6 @@ import { AuthContext } from '../../context/AuthContext';
 
 export const Header = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user)
 
   const [click, setClick] = useState(false);
 

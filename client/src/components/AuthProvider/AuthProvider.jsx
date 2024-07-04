@@ -5,7 +5,6 @@ import apiUsers from '../../api/api-users';
 
 export const AuthProvider = ({ children }) => {
   const initialUser = useLoaderData();
-  console.log(initialUser);
   const [user, setUser] = useState(initialUser);
   const navigate = useNavigate();
 
