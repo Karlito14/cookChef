@@ -20,6 +20,7 @@ ol {
 
 a {
   text-decoration: none;
+  color: variables.$text-color;
 }
 
 .app-container {
@@ -28,6 +29,7 @@ a {
   min-height: 100vh;
 }
 
-input, ::placeholder {
+input,
+::placeholder {
   font-family: variables.$font-family;
 }

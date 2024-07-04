@@ -2,7 +2,8 @@ import style from './style.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import apiUsers from '../../api/api-users';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const schema = yup.object({
   email: yup
@@ -13,6 +14,7 @@ const schema = yup.object({
 });
 
 export const FormSignin = () => {
+  const { login } = useContext(AuthContext);
 
   const defaultValues = {
     email: '',
@@ -32,9 +34,9 @@ export const FormSignin = () => {
 
   const onSubmit = async (data) => {
     clearErrors();
+
     try {
-      const user = await apiUsers.signin(data);
-      console.log(user)
+      await login(data);
     } catch (message) {
       setError('generic', { type: 'generic', message });
     }

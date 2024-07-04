@@ -31,7 +31,7 @@ export const RecipeForm = () => {
     handleSubmit,
     reset,
     clearErrors,
-    formState: { errors, isSubmitting, isSubmitted },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
@@ -95,9 +95,6 @@ export const RecipeForm = () => {
           <button disabled={isSubmitting} className="btn btn-primary">
             Sauvegarder
           </button>
-          {isSubmitted && (
-            <p className={style.success}>Recette bien enregistré</p>
-          )}
         </div>
       </form>
     </div>

@@ -2,10 +2,14 @@ import style from './style.module.scss';
 import { FaBars } from 'react-icons/fa6';
 import logo from '../../assets/images/cookchef.png';
 import { FaHeart } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user)
+
   const [click, setClick] = useState(false);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -33,28 +37,45 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <ul
-          className={`${style.header__list} ${
-            click && windowWidth < 640 ? style.active : ''
-          }`}
-        >
-          <li className={style.header__list__item}>
-            <Link to={'/admin'} className="btn btn-primary">
-              Admin
-            </Link>
-          </li>
-          <li className={style.header__list__item}>
-            <button className="btn btn-reverse-primary">
-              {<FaHeart />}WishList
-            </button>
-          </li>
-          <li className={style.header__list__item}>
-            <Link to={'/signup'} className="btn btn-primary">Inscription</Link>
-          </li>
-          <li className={style.header__list__item}>
-            <Link to={'/signin'} className="btn btn-primary">Connexion</Link>
-          </li>
-        </ul>
+        {!user ? (
+          <ul
+            className={`${style.header__list} ${
+              click && windowWidth < 640 ? style.active : ''
+            }`}
+          >
+            <li className={style.header__list__item}>
+              <Link to={'/signup'} className="btn btn-primary">
+                Inscription
+              </Link>
+            </li>
+            <li className={style.header__list__item}>
+              <Link to={'/signin'} className="btn btn-reverse-primary">
+                Connexion
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul
+            className={`${style.header__list} ${
+              click && windowWidth < 640 ? style.active : ''
+            }`}
+          >
+            <li className={style.header__list__item}>
+              <Link to={'/admin'} className="btn btn-primary">
+                Profil
+              </Link>
+            </li>
+            <li className={style.header__list__item}>
+              <button className="btn btn-reverse-primary">
+                {<FaHeart />}WishList
+              </button>
+            </li>
+            <li className={style.header__list__item}>
+              <button className="btn btn-reverse-primary">Déconnexion</button>
+            </li>
+          </ul>
+        )}
+
         <FaBars
           className={style.header__icon}
           onClick={() => setClick(!click)}
