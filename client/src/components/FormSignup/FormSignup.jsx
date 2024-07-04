@@ -32,7 +32,7 @@ export const FormSignup = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted, isSubmitting },
+    formState: { errors, isSubmitting },
     setError,
     clearErrors,
   } = useForm({
@@ -101,9 +101,6 @@ export const FormSignup = () => {
         >
           Valider
         </button>
-        {isSubmitted && (
-          <p className={style.form_success}>Inscription validé</p>
-        )}
       </form>
     </div>
   );
