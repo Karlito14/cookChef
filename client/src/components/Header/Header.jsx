@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   console.log(user)
 
   const [click, setClick] = useState(false);
@@ -71,7 +71,7 @@ export const Header = () => {
               </button>
             </li>
             <li className={style.header__list__item}>
-              <button className="btn btn-reverse-primary">Déconnexion</button>
+              <button onClick={logout} className="btn btn-reverse-primary">Déconnexion</button>
             </li>
           </ul>
         )}

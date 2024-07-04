@@ -5,6 +5,7 @@ import apiUsers from '../../api/api-users';
 
 export const AuthProvider = ({ children }) => {
   const initialUser = useLoaderData();
+  console.log(initialUser);
   const [user, setUser] = useState(initialUser);
   const navigate = useNavigate();
 
@@ -14,13 +15,18 @@ export const AuthProvider = ({ children }) => {
     navigate('../admin');
   };
 
-  //const logout = async () => {};
+  const logout = async () => {
+    await apiUsers.signout();
+    setUser(null);
+    navigate('../')
+  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
         login,
+        logout,
       }}
     >
       {children}

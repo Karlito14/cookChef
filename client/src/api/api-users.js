@@ -23,6 +23,11 @@ class ApiUsers {
     }
   }
 
+  async getUser() {
+    const response = await fetch(`${this.url}/auth/current`);
+    return response.json();
+  }
+
   async signin(user) {
     const response = await fetch(`${this.url}/auth`, {
       method: 'POST',
@@ -39,9 +44,15 @@ class ApiUsers {
       if (body) {
         throw body;
       } else {
-        throw new Error("Erreur lors de la connexion");
+        throw new Error('Erreur lors de la connexion');
       }
     }
+  }
+
+  async signout() {
+    await fetch(`${this.url}/auth`, {
+      method: 'DELETE',
+    });
   }
 }
 
