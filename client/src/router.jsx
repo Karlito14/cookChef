@@ -10,6 +10,7 @@ import { Signup } from './pages/Signup/Signup';
 import { Signin } from './pages/Signin/Signin';
 import apiRecipes from './api/api-recipes';
 import apiUsers from './api/api-users';
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ export const router = createBrowserRouter([
       },
       {
         path: '/admin',
-        element: <Admin />,
+        element: (
+          <ProtectedRoute>
+            <Admin />
+          </ProtectedRoute>
+        ),
         children: [
           {
             path: 'recipes',
