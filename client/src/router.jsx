@@ -6,14 +6,16 @@ import { AdminRecipes } from './pages/Admin/pages/AdminRecipes/AdminRecipes';
 import { AdminUsers } from './pages/Admin/pages/AdminUsers/AdminUsers';
 import { AdminRecipesList } from './pages/Admin/pages/AdminRecipes/pages/AdminRecipesList/AdminRecipesList';
 import { AdminRecipesForm } from './pages/Admin/pages/AdminRecipes/pages/AdminRecipesForm/AdminRecipesForm';
-import apiRecipes from './api/api-recipes';
 import { Signup } from './pages/Signup/Signup';
 import { Signin } from './pages/Signin/Signin';
+import apiRecipes from './api/api-recipes';
+import apiUsers from './api/api-users';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    loader: async () => apiUsers.getUser(),
     children: [
       {
         index: true,
