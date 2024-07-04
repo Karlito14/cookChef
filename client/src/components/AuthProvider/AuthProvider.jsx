@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     await apiUsers.signout();
     setUser(null);
-    navigate('../')
+    navigate('../');
   };
 
   return (

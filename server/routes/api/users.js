@@ -17,9 +17,9 @@ router.post('/', async (req, res) => {
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
-      res.status(400).json("Email déjà utilisé");
+      res.status(400).json('Email déjà utilisé');
     } else {
-      res.status(400).json("Oops une erreur est survenue");
+      res.status(400).json('Oops une erreur est survenue');
     }
   }
 });
