@@ -1,5 +1,11 @@
+@use 'src/assets/styles/mixins.scss';
+
 .container {
-    flex: auto;
-    padding: 30px;
-    display: flex;
+  flex: auto;
+  padding: 30px;
+  display: flex;
+
+  @include mixins.md {
+    flex-direction: column;
+  }
 }

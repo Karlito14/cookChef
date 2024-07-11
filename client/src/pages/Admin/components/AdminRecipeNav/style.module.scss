@@ -1,4 +1,6 @@
-@use '../../../../assets/styles/variables';
+@use 'src/assets/styles/variables';
+@use 'src/assets/styles/mixins';
+
 
 .container {
     margin-bottom: 20px;

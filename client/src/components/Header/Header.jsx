@@ -12,6 +12,10 @@ export const Header = () => {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const handleClick = () => {
+    setClick(false);
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -27,7 +31,7 @@ export const Header = () => {
     <>
       <header className={style.header}>
         <div className={style.header__containerImg}>
-          <Link to={'/'}>
+          <Link to={'/'} onClick={handleClick}>
             <img
               src={logo}
               alt="cookchef"
@@ -42,12 +46,20 @@ export const Header = () => {
             }`}
           >
             <li className={style.header__list__item}>
-              <Link to={'/signup'} className="btn btn-primary">
+              <Link
+                to={'/signup'}
+                className="btn btn-primary"
+                onClick={handleClick}
+              >
                 Inscription
               </Link>
             </li>
             <li className={style.header__list__item}>
-              <Link to={'/signin'} className="btn btn-reverse-primary">
+              <Link
+                to={'/signin'}
+                className="btn btn-reverse-primary"
+                onClick={handleClick}
+              >
                 Connexion
               </Link>
             </li>
@@ -59,12 +71,24 @@ export const Header = () => {
             }`}
           >
             <li className={style.header__list__item}>
-              <Link to={'/admin'} className="btn btn-primary">
+              <Link
+                to={'/admin'}
+                className="btn btn-primary"
+                onClick={handleClick}
+              >
                 Profil
               </Link>
             </li>
             <li className={style.header__list__item}>
-              <button onClick={logout} className="btn btn-reverse-primary">Déconnexion</button>
+              <button
+                onClick={() => {
+                  logout();
+                  handleClick();
+                }}
+                className="btn btn-reverse-primary"
+              >
+                Déconnexion
+              </button>
             </li>
           </ul>
         )}

@@ -38,9 +38,15 @@
 
     &__item {
       margin-right: 10px;
+      
       @include mixins.sm {
         margin-right: 0px;
-        margin-bottom: 10px;
+      }
+
+      &:first-child {
+        @include mixins.sm {
+          margin-bottom: 20px;
+        }
       }
 
       button {
