@@ -1,10 +1,10 @@
 import style from './style.module.scss';
-import apiRecipes from '../../api/api-recipes';
-import { useUpdateIndex } from '../../hooks/useUpdateIndex';
-import { useFetchRecipes } from '../../hooks/useFetchRecipes';
-import { Recipe } from '../Recipe/Recipe';
-import { Spinning } from '../Spinning/Spinning';
-import { Search } from '../Search/Search';
+import apiRecipes from 'src/api/api-recipes';
+import { useUpdateIndex } from 'src/hooks/useUpdateIndex';
+import { useFetchRecipes } from 'src/hooks/useFetchRecipes';
+import { Recipe } from 'src/components/Recipe/Recipe';
+import { Spinning } from 'src/components/Spinning/Spinning';
+import { Search } from 'src/components/Search/Search';
 
 export const Main = () => {
   const [[recipes, setRecipes], response, loading] = useFetchRecipes();

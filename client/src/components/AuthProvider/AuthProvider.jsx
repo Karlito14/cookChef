@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import apiUsers from '../../api/api-users';
+import { AuthContext } from 'src/context/AuthContext';
+import apiUsers from 'src/api/api-users';
 
 export const AuthProvider = ({ children }) => {
   const initialUser = useLoaderData();

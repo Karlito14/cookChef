@@ -1,6 +1,5 @@
 import { FaSearch } from 'react-icons/fa';
 import style from './style.module.scss';
-//import { data } from '../../data/data';
 
 export const Search = ({ setRecipes, recipes }) => {
   const handleInput = (event) => {

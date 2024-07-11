@@ -1,10 +1,9 @@
 import style from './style.module.scss';
 import { FaBars } from 'react-icons/fa6';
-import logo from '../../assets/images/cookchef.png';
-import { FaHeart } from 'react-icons/fa';
+import logo from 'src/assets/images/cookchef.png';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from 'src/context/AuthContext';
 
 export const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -63,11 +62,6 @@ export const Header = () => {
               <Link to={'/admin'} className="btn btn-primary">
                 Profil
               </Link>
-            </li>
-            <li className={style.header__list__item}>
-              <button className="btn btn-reverse-primary">
-                {<FaHeart />}WishList
-              </button>
             </li>
             <li className={style.header__list__item}>
               <button onClick={logout} className="btn btn-reverse-primary">Déconnexion</button>

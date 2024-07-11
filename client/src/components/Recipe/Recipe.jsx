@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import apiRecipes from '../../api/api-recipes';
+import apiRecipes from 'src/api/api-recipes';
 import style from './style.module.scss';
 import { FaHeart, FaTimes } from 'react-icons/fa';
 

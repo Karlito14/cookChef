@@ -2,7 +2,7 @@ import style from './style.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import apiUsers from '../../api/api-users';
+import apiUsers from 'src/api/api-users';
 import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({

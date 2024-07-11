@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import apiRecipes from '../../../../../../api/api-recipes';
-import { useFetchRecipes } from '../../../../../../hooks/useFetchRecipes';
+import apiRecipes from 'src/api/api-recipes';
+import { useFetchRecipes } from 'src/hooks/useFetchRecipes';
 import style from './style.module.scss';
 
 export const AdminRecipesList = () => {

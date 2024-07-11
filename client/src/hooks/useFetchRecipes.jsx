@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import apiRecipes from '../api/api-recipes';
+import apiRecipes from 'src/api/api-recipes';
 
 export const useFetchRecipes = () => {
   const [recipes, setRecipes] = useState([]);
