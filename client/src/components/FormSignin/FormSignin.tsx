@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useContext } from 'react';
-import { AuthContext } from 'src/context/AuthContext';
+import { UserInterface } from '../../types/types';
+import { AuthContext } from '../../context/AuthContext';
 
 const schema = yup.object({
   email: yup
@@ -14,7 +15,9 @@ const schema = yup.object({
 });
 
 export const FormSignin = () => {
-  const { login } = useContext(AuthContext);
+  const provider = useContext(AuthContext);
+
+  const login = provider?.login;
 
   const defaultValues = {
     email: '',
@@ -32,13 +35,15 @@ export const FormSignin = () => {
     defaultValues: defaultValues,
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: UserInterface) => {
     clearErrors();
 
     try {
-      await login(data);
-    } catch (message) {
-      setError('generic', { type: 'generic', message });
+      if (login) {
+        await login(data);
+      }
+    } catch (message: any) {
+      setError('root', { type: 'generic', message });
     }
   };
 
@@ -50,7 +55,6 @@ export const FormSignin = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            name="email"
             id="email"
             autoComplete="off"
             {...register('email')}
@@ -61,18 +65,13 @@ export const FormSignin = () => {
         </div>
         <div className={style.form__content}>
           <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            {...register('password')}
-          />
+          <input type="password" id="password" {...register('password')} />
           {errors.password && (
             <p className={style.form_error}>{errors.password.message}</p>
           )}
         </div>
-        {errors.generic && (
-          <p className={style.form_error}>{errors.generic.message}</p>
+        {errors.root && (
+          <p className={style.form_error}>{errors.root.message}</p>
         )}
         <button
           disabled={isSubmitting}

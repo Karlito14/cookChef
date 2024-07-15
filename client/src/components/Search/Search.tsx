@@ -1,13 +1,14 @@
 import { FaSearch } from 'react-icons/fa';
 import style from './style.module.scss';
+import { RecipeInterface } from '../../types/types';
 
-export const Search = ({ setRecipes, recipes }) => {
-  const handleInput = (event) => {
+export const Search = (props : { setRecipes: React.Dispatch<React.SetStateAction<RecipeInterface[]>>, recipes: RecipeInterface[] }) => {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.trim().toLowerCase();
-    const recipesUpdated = recipes.filter((recipe) =>
+    const recipesUpdated = props.recipes.filter((recipe: RecipeInterface) =>
       recipe.title.toLowerCase().includes(value)
     );
-    setRecipes(recipesUpdated);
+    props.setRecipes(recipesUpdated);
   };
 
   return (

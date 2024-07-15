@@ -3,10 +3,13 @@ import { FaBars } from 'react-icons/fa6';
 import logo from 'src/assets/images/cookchef.png';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from 'src/context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const provider = useContext(AuthContext);
+
+  const logout = provider?.logout;
+  const user = provider?.user;
 
   const [click, setClick] = useState(false);
 
@@ -82,7 +85,9 @@ export const Header = () => {
             <li className={style.header__list__item}>
               <button
                 onClick={() => {
-                  logout();
+                  if (logout) {
+                    logout();
+                  }
                   handleClick();
                 }}
                 className="btn btn-reverse-primary"

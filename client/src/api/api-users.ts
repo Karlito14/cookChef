@@ -1,9 +1,13 @@
+import { UserInterface } from '../types/types';
+
 class ApiUsers {
-  constructor(url) {
+  url: string;
+
+  constructor(url: string) {
     this.url = url;
   }
 
-  async createUser(newUser) {
+  async createUser(newUser: UserInterface) {
     const response = await fetch(`${this.url}/users`, {
       method: 'POST',
       headers: {
@@ -15,20 +19,16 @@ class ApiUsers {
     if (response.ok) {
       return body;
     } else {
-      if (body) {
-        throw body;
-      } else {
-        throw new Error("Erreur lors de la création de l'utilisateur");
-      }
+      throw new Error("Erreur lors de la création de l'utilisateur");
     }
   }
 
-  async getUser() {
+  async getUser(): Promise<UserInterface> {
     const response = await fetch(`${this.url}/auth/current`);
     return response.json();
   }
 
-  async signin(user) {
+  async signin(user: UserInterface) {
     const response = await fetch(`${this.url}/auth`, {
       method: 'POST',
       headers: {
@@ -41,11 +41,7 @@ class ApiUsers {
     if (response.ok) {
       return body;
     } else {
-      if (body) {
-        throw body;
-      } else {
-        throw new Error('Erreur lors de la connexion');
-      }
+      throw new Error('Erreur lors de la connexion');
     }
   }
 

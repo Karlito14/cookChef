@@ -6,10 +6,20 @@ export const AdminRecipesNav = () => {
     <nav className={style.container}>
       <ul className={style.container__list}>
         <li className={style.container__list__link}>
-          <NavLink className={({isActive}) => isActive ? style.active : ''} to={'list'}>Liste des recettes</NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? style.active : '')}
+            to={'list'}
+          >
+            Liste des recettes
+          </NavLink>
         </li>
         <li className={style.container__list__link}>
-          <NavLink className={({isActive}) => isActive ? style.active : ''} to={'new'}>Ajouter une recette</NavLink>
+          <NavLink
+            className={({ isActive }) => (isActive ? style.active : '')}
+            to={'new'}
+          >
+            Ajouter une recette
+          </NavLink>
         </li>
       </ul>
     </nav>

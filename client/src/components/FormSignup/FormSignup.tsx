@@ -2,8 +2,9 @@ import style from './style.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import apiUsers from 'src/api/api-users';
 import { useNavigate } from 'react-router-dom';
+import apiUsers from '../../api/api-users';
+import { UserInterface } from '../../types/types';
 
 const schema = yup.object({
   name: yup
@@ -40,13 +41,13 @@ export const FormSignup = () => {
     defaultValues: defaultValues,
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: UserInterface) => {
     clearErrors();
     try {
       await apiUsers.createUser(data);
       navigate('../signin');
-    } catch (message) {
-      setError('generic', { type: 'generic', message });
+    } catch (message: any) {
+      setError('root', { type: 'generic', message });
     }
   };
 
@@ -58,7 +59,6 @@ export const FormSignup = () => {
           <label htmlFor="name">Nom</label>
           <input
             type="text"
-            name="name"
             id="name"
             autoComplete="off"
             {...register('name')}
@@ -71,7 +71,6 @@ export const FormSignup = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            name="email"
             id="email"
             autoComplete="off"
             {...register('email')}
@@ -84,7 +83,6 @@ export const FormSignup = () => {
           <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
-            name="password"
             id="password"
             {...register('password')}
           />
@@ -92,8 +90,8 @@ export const FormSignup = () => {
             <p className={style.form_error}>{errors.password.message}</p>
           )}
         </div>
-        {errors.generic && (
-          <p className={style.form_error}>{errors.generic.message}</p>
+        {errors.root && (
+          <p className={style.form_error}>{errors.root.message}</p>
         )}
         <button
           disabled={isSubmitting}

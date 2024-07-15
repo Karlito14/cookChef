@@ -1,17 +1,18 @@
 import style from './style.module.scss';
-import apiRecipes from 'src/api/api-recipes';
-import { useUpdateIndex } from 'src/hooks/useUpdateIndex';
-import { useFetchRecipes } from 'src/hooks/useFetchRecipes';
-import { Recipe } from 'src/components/Recipe/Recipe';
-import { Spinning } from 'src/components/Spinning/Spinning';
-import { Search } from 'src/components/Search/Search';
+import { RecipeInterface } from '../../types/types';
+import { useUpdateIndex } from '../../hooks/useUpdateIndex';
+import { useFetchRecipes } from '../../hooks/useFetchRecipes';
+import apiRecipes from '../../api/api-recipes';
+import { Spinning } from '../Spinning/Spinning';
+import { Search } from '../Search/Search';
+import { Recipe } from '../Recipe/Recipe';
 
 export const Main = () => {
   const [[recipes, setRecipes], response, loading] = useFetchRecipes();
   const index = useUpdateIndex(recipes);
 
-  const deleteRecipe = async (id) => {
-    const updateRecipes = recipes.filter((recipe) => recipe._id !== id);
+  const deleteRecipe = async (id: string) => {
+    const updateRecipes = recipes.filter((recipe: RecipeInterface) => recipe._id !== id);
     setRecipes(updateRecipes);
     try {
       await apiRecipes.deleteRecipe(id);
@@ -27,7 +28,7 @@ export const Main = () => {
       <main className={style.container__main}>
         {loading && <Spinning />}
         <ul className={style.container__main__list}>
-          {recipes.slice(0, index).map((recipe) => (
+          {recipes?.slice(0, index).map((recipe: RecipeInterface) => (
             <Recipe
               key={recipe._id}
               recipe={recipe}

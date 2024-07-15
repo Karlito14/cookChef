@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { AuthContext } from 'src/context/AuthContext';
-import apiUsers from 'src/api/api-users';
+import apiUsers from '../../api/api-users';
+import { AuthContext } from '../../context/AuthContext';
+import { UserInterface } from '../../types/types';
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = (props: { children: JSX.Element[] }) => {
   const initialUser = useLoaderData();
   const [user, setUser] = useState(initialUser);
   const navigate = useNavigate();
 
-  const login = async (data) => {
+  const login = async (data: UserInterface) => {
     const connectedUser = await apiUsers.signin(data);
     setUser(connectedUser);
     navigate('../admin');
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         logout,
       }}
     >
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };

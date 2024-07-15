@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import apiRecipes from 'src/api/api-recipes';
+import apiRecipes from '../api/api-recipes';
+import { RecipeInterface } from '../types/types';
 
 export const useFetchRecipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [response, setResponse] = useState([]);
+  const [recipes, setRecipes] = useState<RecipeInterface[]>();
+  const [response, setResponse] = useState<RecipeInterface[]>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,5 +23,5 @@ export const useFetchRecipes = () => {
     getRecipes();
   }, []);
 
-  return [[recipes, setRecipes], response, loading];
+  return [[recipes && recipes, setRecipes ], response, loading];
 };

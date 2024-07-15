@@ -2,8 +2,9 @@ import style from './style.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import apiRecipes from 'src/api/api-recipes';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import apiRecipes from '../../../../api/api-recipes';
+import { RecipeInterface } from '../../../../types/types';
 
 const schema = yup.object({
   title: yup
@@ -18,7 +19,7 @@ const schema = yup.object({
 });
 
 export const RecipeForm = () => {
-  const recipe = useLoaderData();
+  const recipe: RecipeInterface = useLoaderData();
   const navigate = useNavigate()
 
   const defaultValues = {
@@ -37,17 +38,17 @@ export const RecipeForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: {title: string, image: string}) => {
     clearErrors();
 
-    const title = values.title.trim().replaceAll('  ', ' ');
+    const title = values.title.trim();
     const object = {
       ...values,
       title: title[0].toUpperCase() + title.slice(1),
     };
 
     try {
-      if (recipe) {
+      if (recipe._id) {
         await apiRecipes.updateRecipe({ ...object }, recipe._id);
         navigate('../list')
       } else {
@@ -72,7 +73,6 @@ export const RecipeForm = () => {
           <input
             type="text"
             id="title"
-            name="title"
             {...register('title')}
           />
           {errors.title && (
@@ -84,7 +84,6 @@ export const RecipeForm = () => {
           <input
             type="text"
             id="image"
-            name="image"
             {...register('image')}
           />
           {errors.image && (

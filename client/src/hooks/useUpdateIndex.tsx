@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { RecipeInterface } from "../types/types";
 
-export const useUpdateIndex = (recipes) => {
+export const useUpdateIndex = (recipes: RecipeInterface[]) => {
   const [index, setIndex] = useState(6);
 
   useEffect(() => {
